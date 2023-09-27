@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'Provider.dart';
 import 'SuccessPage.dart';
+import 'keypad_number.dart';
 
 void main() {
   runApp(
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         child: Column(
           children: [
             const CircularTextField(),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             Keypad(),
           ],
         ),
@@ -245,33 +246,6 @@ class Keypad extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-}
-
-class KeypadNumber extends StatelessWidget {
-  final String number;
-
-  KeypadNumber({required this.number, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<CircularTextFieldProvider>(context);
-
-    return GestureDetector(
-      onTap: () {
-        for (int i = 0; i < provider.circularTextFieldModels.length; i++) {
-          if (provider.circularTextFieldModels[i].text.isEmpty) {
-            provider.setText(i, number);
-            break;
-          }
-        }
-      },
-      child: Text(
-        number,
-        style: const TextStyle(
-            fontSize: 40, color: Color.fromARGB(255, 39, 227, 192)),
-      ),
     );
   }
 }
